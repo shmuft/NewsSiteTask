@@ -1,0 +1,54 @@
+{# src\Shmuft\NewsBundle\Resources\views\layout.html.twig #}
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/shmuftnews/css/news.css') }}" rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block body %}
+    {% for one_news in news %}
+        <article class="news">
+            <div class="date">
+                <time datetime="{{ one_news.created|date('c') }}">
+                    {{ one_news.created|date('l, F j, Y') }}
+                </time>
+                <header>
+                    <h2>
+                        <a href="{{ path('shmuft_news_show', {'news_id' : one_news.id}) }}">
+                            {{ one_news.title }}
+                        </a>
+                    </h2>
+                </header>
+                <div class="snipet">
+                    <p>
+                        {{ one_news.body(500) }}
+                    </p>
+                    <p class="continue">
+                        <a href="{{ path('shmuft_news_show', {'news_id': one_news.id}) }}">
+                            Continue reading...
+                        </a>
+                    </p>
+                </div>
+
+                <footer class="meta">
+                    <p>Tags: <span class="highlight">{{ one_news.tags }}</span></p>
+                </footer>
+            </div>
+        </article>
+    {% else %}
+        <p>There are no news...</p>
+    {% endfor %}
+    <ul class="pagination">
+        {% for i in 1..count_pages %}
+            <li>
+                <a href="{{ path('shmuft_news_index_paginator', {'current_page_news' : i}) }}"
+                        {% if i == current_page_news %}
+                            class="current"
+                        {% endif %}>
+                    {{ i }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

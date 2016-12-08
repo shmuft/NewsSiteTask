@@ -1,0 +1,4 @@
+services:
+#    shmuft_news.example:
+#        class: Shmuft\NewsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,0 +1,26 @@
+{# src\Shmuft\NewsBundle\Resources\views\show.html.twig #}
+{% extends '::base.html.twig' %}
+{% block body %}
+    <article class="news">
+        <div class="date">
+            <time datetime="{{ one_news.created|date('c') }}">
+                {{ one_news.created|date('l, F j, Y') }}
+            </time>
+            <header>
+                <h2>
+                    {{ one_news.title }}
+                </h2>
+            </header>
+            <div class="snipet">
+                <p>
+                    {{ one_news.body }}
+                </p>
+            </div>
+
+            <footer class="meta">
+                <p>Tags: <span class="highlight">{{ one_news.tags }}</span></p>
+            </footer>
+        </div>
+    </article>
+
+{% endblock %}

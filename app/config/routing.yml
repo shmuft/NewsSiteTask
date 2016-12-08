@@ -1,3 +1,4 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+shmuft_news:
+    resource: "@ShmuftNewsBundle/Resources/config/routing.yml"
+    prefix:   /
+

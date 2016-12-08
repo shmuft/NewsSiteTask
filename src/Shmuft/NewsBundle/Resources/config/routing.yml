@@ -1,0 +1,20 @@
+shmuft_news_index:
+  path: /
+  defaults: {_controller: "ShmuftNewsBundle:Page:index"}
+  requirements:
+    methods: GET
+
+shmuft_news_index_paginator:
+  path: /{current_page_news}
+  defaults: {_controller: "ShmuftNewsBundle:Page:index"}
+  requirements:
+    methods: GET
+    current_page_news: \d+
+
+
+shmuft_news_show:
+  path: /news/{news_id}
+  defaults: {_controller: "ShmuftNewsBundle:Page:show"}
+  requirements:
+    methods: GET
+    news_id: \d+
