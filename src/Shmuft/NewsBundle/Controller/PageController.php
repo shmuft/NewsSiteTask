@@ -22,9 +22,9 @@ class PageController extends Controller
         ));
     }
 
-    public function showAction($news_id){
+    public function showAction($slug){
         $em = $this->getDoctrine()->getManager();
-        $one_news = $em->getRepository('ShmuftNewsBundle:News')->find($news_id);
+        $one_news = $em->getRepository('ShmuftNewsBundle:News')->findOneBy(array('slug' => $slug));
         return $this->render('ShmuftNewsBundle:Page:show.html.twig', array(
             'one_news' => $one_news,
         ));

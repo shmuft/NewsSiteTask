@@ -22,6 +22,7 @@ class NewsFixtures implements FixtureInterface
         $news1->setTags("cat, home, today");
         $news1->setCreated(new \DateTime());
         $news1->setUpdated($news1->getCreated());
+//        print_r($news1);
         $manager->persist($news1);
 
         $news2 = new News();

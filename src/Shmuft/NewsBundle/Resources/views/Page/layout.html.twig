@@ -14,7 +14,7 @@
                 </time>
                 <header>
                     <h2>
-                        <a href="{{ path('shmuft_news_show', {'news_id' : one_news.id}) }}">
+                        <a href="{{ path('shmuft_news_show', {'slug' : one_news.slug}) }}">
                             {{ one_news.title }}
                         </a>
                     </h2>
@@ -24,7 +24,7 @@
                         {{ one_news.body(500) }}
                     </p>
                     <p class="continue">
-                        <a href="{{ path('shmuft_news_show', {'news_id': one_news.id}) }}">
+                        <a href="{{ path('shmuft_news_show', {'slug': one_news.slug}) }}">
                             Continue reading...
                         </a>
                     </p>
