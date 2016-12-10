@@ -11,9 +11,20 @@ shmuft_news_index_paginator:
     methods: GET
     current_page_news: \d+
 
-
 shmuft_news_show:
   path: /news/{slug}
   defaults: {_controller: "ShmuftNewsBundle:Page:show"}
   requirements:
     methods: GET
+
+shmuft_news_new:
+  path: /admin/news/new
+  defaults: {_controller: "ShmuftNewsBundle:Page:new"}
+  requirements:
+    methods: GET|POST
+
+shmuft_news_create:
+  path: /admin/news/create
+  defaults: {_controller: "ShmuftNewsBundle:Page:create"}
+  requirements:
+    methods: POST

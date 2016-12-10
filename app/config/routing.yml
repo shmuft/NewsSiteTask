@@ -1,4 +1,3 @@
 shmuft_news:
     resource: "@ShmuftNewsBundle/Resources/config/routing.yml"
     prefix:   /
-

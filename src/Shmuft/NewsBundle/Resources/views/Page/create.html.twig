@@ -1,0 +1,7 @@
+{# src\Shmuft\NewsBundle\Resources\views\create.html.twig #}
+{% extends 'ShmuftNewsBundle:Page:layout.html.twig' %}
+{% block title %}Add news{% endblock %}
+
+{% block body %}
+    {% include 'ShmuftNewsBundle:Page:new.html.twig' with {'form':form } %}
+{% endblock %}

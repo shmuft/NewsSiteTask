@@ -1,0 +1,15 @@
+{# src\Shmuft\NewsBundle\Resources\views\new.html.twig #}
+<header>
+    <h1>
+        New news!
+    </h1>
+</header>
+{{ form_start(form, {'action':  path('shmuft_news_create'), 'method': 'POST', 'attr':{'class':'news'}}) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.body) }}
+    {{ form_row(form.tags) }}
+
+    {{ form_rest(form) }}
+
+<input type="submit" value="Submit"/>

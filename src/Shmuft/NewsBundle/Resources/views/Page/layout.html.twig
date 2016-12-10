@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block body %}
+    <p>
+        <h1>
+            <a href="{{ path('shmuft_news_create') }}">Add new news.</a>
+        </h1>
+    </p>
     {% for one_news in news %}
         <article class="news">
             <div class="date">
@@ -43,7 +48,7 @@
             <li>
                 <a href="{{ path('shmuft_news_index_paginator', {'current_page_news' : i}) }}"
                         {% if i == current_page_news %}
-                            class="current"
+                    class="current"
                         {% endif %}>
                     {{ i }}
                 </a>

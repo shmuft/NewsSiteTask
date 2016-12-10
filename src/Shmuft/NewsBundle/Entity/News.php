@@ -9,6 +9,10 @@
 namespace Shmuft\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
@@ -17,6 +21,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Shmuft\NewsBundle\Entity\Repository\NewsRepository")
  * @ORM\Table(name="news")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("slug", message="This title is already used")
  */
 class News
 {
@@ -56,7 +61,7 @@ class News
     protected $updated;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     protected $slug;
 
@@ -195,12 +200,13 @@ class News
      * @param $text
      * @return mixed|string
      */
-    public function slugify($text){
+    public function slugify($text)
+    {
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
 
         $text = trim($text, '-');
 
-        if (function_exists('iconv')){
+        if (function_exists('iconv')) {
             $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
         }
 
@@ -234,5 +240,26 @@ class News
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('title', new NotBlank(array(
+            'message' => 'You must add Title',
+        )));
+        $metadata->addPropertyConstraint('body', new Length(array('min' => 50)));
+        $metadata->addPropertyConstraint('tags', new NotBlank(array(
+            'message' => 'You must add tags',
+        )));
+    }
+
+    public function __construct()
+    {
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
+    }
+
+    public function setUpdatedValue(){
+        $this->setUpdated(new \DateTime());
     }
 }
